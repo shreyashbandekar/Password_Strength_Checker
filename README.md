@@ -1,73 +1,70 @@
-# PRODIGY_CS_03
 # Password Strength Checker
 
-## Introduction
-The Password Strength Checker is a simple tool designed to evaluate the strength of passwords based on several common security criteria. The tool provides a detailed assessment of a password's strength, helping users create more secure passwords by highlighting areas of weakness.
-## Features
+A resume-ready cyber security mini-project that analyzes a password using practical rules inspired by real-world attack patterns.
 
-- **Length Requirement:** The password must be at least 8 characters long.
-- **Uppercase Letter:** The password must contain at least one uppercase letter.
-- **Lowercase Letter:** The password must contain at least one lowercase letter.
-- **Numeric Character:** The password must include at least one number.
-- **Special Character:** The password must contain at least one special character (e.g., `!@#$%^&*(),.?":{}|<>`).
+## What this tool checks
 
-## Password Strength Levels
+1. **Length**
+   - Flags short passwords and rates length quality (`Too short`, `Minimum`, `Good`, `Excellent`).
+2. **Character diversity**
+   - Checks for uppercase, lowercase, digits, and special characters.
+3. **Common word detection**
+   - Detects common words and exact weak-password matches (e.g., `password123`).
+4. **Breach-based pattern detection**
+   - Detects repeated characters, common sequences (`1234`, `qwerty`, `abcd`), year-like patterns, and low-uniqueness passwords.
 
-The script categorizes the password strength into four levels:
-- **Strong:** Meets all criteria (5 out of 5).
-- **Moderate:** Meets 4 out of 5 criteria.
-- **Weak:** Meets 3 out of 5 criteria.
-- **Very Weak:** Meets fewer than 3 criteria.
+## How scoring works
 
-## Usage
+The checker builds a score from:
+- length compliance
+- character diversity (0–4 points)
+- penalties for common words/exact weak passwords
+- penalties for breach-like patterns
 
-1. **Run the Script:**
-   Execute the script in a Python environment.
+Final rating:
+- **Strong**
+- **Moderate**
+- **Weak**
+- **Very Weak**
 
-   ```bash
-   python password_strength.py
-## Requirements
+## Run locally
 
-- **Python 3.6+**
+```bash
+python app.py
+```
 
-## Installation
+Then enter a password when prompted.
 
-1. **Clone the Repository:**
+## Example
 
-   ```bash
-   git clone https://github.com/shreyashbandekar/PRODIGY_CS_03.git
-2. **Run the Script:**
-   
-    Execute the script in a Python environment:
-   ```bash
-   python password_strength.py
-3. **Usage**
+```text
+Enter a password to assess: P@ssword2024!!!
 
-    Input the Password:
-     The script will prompt you to enter a password to assess:
-   ```bash
-   Enter a password to assess: Your_password
-4. **Review the Assessment:**
-   
-    The script will display a detailed assessment of the password, including whether it meets each criterion and the overall       strength rating:
-   ```bash
-    -Password: Your_password
-    -Length requirement met: Yes
-    -Uppercase letter present: Yes
-    -Lowercase letter present: Yes
-    -Number present: Yes
-    -Special character present: No
-    -Password strength: Moderate
+Password Analysis for: P@ssword2024!!!
+-------------------------------------------------------
+Length: 15 (Good)
 
-## Code Explanation
-### assess_password_strength(password)
-This function takes a password as input and checks it against the following criteria:
+Character Diversity:
+- Uppercase letter present: Yes
+- Lowercase letter present: Yes
+- Number present: Yes
+- Special character present: Yes
+- Diversity score: 4/4
 
-- **Length of the password**
-- **Presence of uppercase and lowercase letters**
-- **Inclusion of numbers and special characters**
+Common Word Detection:
+- Contains common words: Yes
+- Words found: password
+- Exact common password match: No
 
-It returns a dictionary containing the results of these checks and the overall password strength.
+Breach-Based Pattern Detection:
+- Breach patterns detected: Yes
+  • Repeated characters (e.g., aaa, 111)
 
-### display_password_strength(password_assessment)
-This function takes the output from `assess_password_strength` and prints a user-friendly summary of the password assessment.
+Overall Password Strength: Weak (score: 2)
+```
+
+## Why this looks good on a resume
+
+- Shows secure coding and validation logic.
+- Demonstrates understanding of password attack heuristics.
+- Easy to extend with API-driven breach checks (e.g., Have I Been Pwned k-anonymity model).
